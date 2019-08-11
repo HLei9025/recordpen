@@ -1,0 +1,8 @@
+html, body, #app{
+    width: 100%;
+    height: 100%;
+    background: #eaeaea;
+}
+.slideInRight, .slideOutRight{
+    animation-duration: 200ms;
+}
