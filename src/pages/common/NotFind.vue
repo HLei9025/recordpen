@@ -1,14 +1,12 @@
 <template>
-    <div id="search-input" class="page">
-        <h1>search-input</h1>
-
+    <div class="page" id="not-find">
+        <h1>404</h1>
     </div>
-
 </template>
 
 <script>
 export default {
-    
+
 }
 </script>
 

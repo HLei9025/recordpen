@@ -31,8 +31,8 @@ export default {
 
 <style lang="scss" scoped>
 .tool-wrap{
-    width: 10rem;
-    height: .533333rem;
+    width: 100%;
+    height: 40px;
     overflow: hidden;
     box-sizing: border-box;
     position: absolute;
@@ -51,8 +51,8 @@ export default {
         overflow: hidden;
         .tool-item{
             width: 2rem;
-            height: .4rem;
-            line-height: .4rem;
+            height: .6rem;
+            line-height: .6rem;
             text-align: center;
             background: #6a6a6a;
             color: #fff;

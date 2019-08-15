@@ -1,13 +1,18 @@
 <template>
-    <div id="home">
-        <header-nav></header-nav>
-        <footer-nav></footer-nav>
-        <app-scroll class="content">
-            <ul>
-                <li v-for="num in 100" :key="num">{{num}}</li>
-            </ul>
-        </app-scroll>
-        <tools></tools>
+    <div>
+        <div id="home" class="page">
+            <header-nav></header-nav>
+            <footer-nav></footer-nav>
+            <app-scroll class="content">
+                <ul>
+                    <li v-for="num in 100" :key="num">{{num}}</li>
+                </ul>
+            </app-scroll>
+            <tools></tools>
+        </div>
+        <transition enter-active-class="slideInRight" leave-active-class="slideOutRight">
+            <router-view></router-view>
+        </transition>
     </div>
 </template>
 
@@ -29,8 +34,8 @@ export default {
 .content{
     width: 10rem;
     position: absolute;
-    top: 1.173333rem;
+    top: 50px;
     left: 0;
-    bottom: 1.706667rem;
+    bottom: 90px;
 }
 </style>

@@ -5,7 +5,11 @@ Vue.use(Router)
 const routes = [
     {
         path: '/',
-        redirect: '/home',
+        redirect: '/home'
+    },
+    {
+        path: '/home',
+        component: ()=>import('../pages/home/Home'),
         children: [
             {
                 path: 'mine',
@@ -13,7 +17,13 @@ const routes = [
             },
             {
                 path: 'search',
-                component: ()=>import('../pages/search/Search')
+                component: ()=>import('../pages/search/Search'),
+                children: [
+                    {
+                        path: '/search_input',
+                        component: ()=>import('../pages/search/SearchInput')
+                    }
+                ]
             },
             {
                 path: 'calendar',
@@ -30,6 +40,14 @@ const routes = [
                 ]
             }
         ]
+    },
+    {
+        path: '/404',
+        component: ()=>import('../pages/common/NotFind')
+    },
+    {
+        path: '**',
+        redirect: '/404'
     }
 ]
 

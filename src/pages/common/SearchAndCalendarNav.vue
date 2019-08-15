@@ -1,9 +1,9 @@
 <template>
     <div id="search-and-calendar">
         <div class="nav-wrap">
-            <div class="search nav-left-btn">1</div>
+            <router-link class="search nav-left-btn" to="/home/search">1</router-link>
             <div class="title">888</div>
-            <div class="calendar nav-right-btn">2</div>
+            <router-link class="calendar nav-right-btn" to="/home/calendar">2</router-link>
         </div>
     </div>
 
@@ -18,8 +18,8 @@ export default {
 
 <style lang="scss" scoped>
 .nav-wrap{
-    width: 10rem;
-    height: 1.173333rem;
+    width: 100%;
+    height: 50px;
     background: #eaeaea;
     padding: 0 .266667rem;
     position: absolute;
@@ -30,20 +30,22 @@ export default {
     align-items: center;
     box-sizing: border-box;
     .search,.calendar{
-        width: .8rem;
-        height: .8rem;
-        line-height: .8rem;
+        width: 1rem;
+        height: 1rem;
+        line-height: 1rem;
         text-align: center;
         background: #6a6a6a;
         border-radius: 50%;
+        color: #fff;
     }
     .title{
-        width: 2.266667rem;
+        width: 2.5rem;
         height: .6rem;
         line-height: .6rem;
         text-align: center;
         background: #6a6a6a;
         border-radius: .333333rem;
+        color: #fff;
     }
 }
 </style>

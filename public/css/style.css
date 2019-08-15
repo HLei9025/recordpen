@@ -3,6 +3,14 @@ html, body, #app{
     height: 100%;
     background: #eaeaea;
 }
+.page{
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background: #eaeaea;
+}
 .slideInRight, .slideOutRight{
     animation-duration: 200ms;
 }
