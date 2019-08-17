@@ -5,11 +5,11 @@
             <div class='arrow'>
                 <span class="iconfont icon-jiantou2"></span>
             </div>
-            <div class="information">
+            <router-link class="information">
                 <div class="wrap-img">
                     <img src="" alt="">
                 </div>
-                <div class="wrap-name">用户名</div>
+                <router-link class="wrap-name" >请登录/注册</router-link>
             </div>
         </div>
 
@@ -52,7 +52,7 @@ export default {
             position: absolute;
             height: 63px;
             top: 63px;
-            left: 30px;
+            left: 63px;
             .wrap-img{
                 width: 63px;
                 height: 63px;
