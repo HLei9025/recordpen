@@ -5,11 +5,11 @@
             <div class='arrow'>
                 <span class="iconfont icon-jiantou2"></span>
             </div>
-            <router-link class="information">
+            <div class="information">
                 <div class="wrap-img">
                     <img src="" alt="">
                 </div>
-                <router-link class="wrap-name" >请登录/注册</router-link>
+                <div class="wrap-name" >请登录/注册</div>
             </div>
         </div>
 
