@@ -1,6 +1,6 @@
 <template>
     <div id="write-note" class="page">
-        <add-header title="新增随记" goBack="true"/>
+        <add-header :title="title" :goBack="goBack"/>
         <div class="write-wrap">
             <div class="write-title">
                 <input class="input" type="text" placeholder="标题">
@@ -26,6 +26,12 @@ export default {
     name: 'write-note',
     components: {
         [AddHeader.name]: AddHeader
+    },
+    data(){
+        return {
+            title: '新增随记',
+            goBack: true
+        }
     }
     
 }
@@ -42,14 +48,14 @@ export default {
         background: #fff;
         overflow: hidden;
         box-sizing: border-box;
-        padding: 15px;
+        padding: 0 15px 15px;
         display: flex;
         flex-direction: column;
         font-family: 'PingFangSC-regular';
         .write-title{
             width: 100%;
             height: 40px;
-            margin-bottom: 18px;
+            margin-bottom: 10px;
             .input{
                 width: 100%;
                 height: 100%;
@@ -78,6 +84,7 @@ export default {
             flex: 1;
             width: 100%;
             overflow: hidden;
+            position: relative;
             .txt-area{
                 width: 100%;
                 height: 100%;
@@ -102,6 +109,25 @@ export default {
                 }
                 &:-ms-input-placeholder{
                     color:#fff;
+                }
+            }
+            .tags{
+                overflow: hidden;
+                position: absolute;
+                right: 0;
+                bottom: 5px;
+                text-align: center;
+                span{
+                    width: 24px;
+                    height: 24px;
+                    margin: 5px 8px;
+                    font-size: 22px;
+                    color: #fff;
+                    text-align: center;
+                    line-height: 24px;
+                    &:nth-of-type(4){
+                        font-size: 24px;
+                    }
                 }
             }
 

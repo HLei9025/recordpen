@@ -52,9 +52,6 @@ export default {
                 {id: 3, name: '待办', type: 'todo', bgcolor: '#EA6D6D'},
                 {id: 4, name: '日程', type: 'schedule', bgcolor: '#EE906F'}
             ],
-            bgClass: [
-                
-            ],
             isExist: true,
             remind: false,
             bgcolor: ''
@@ -76,6 +73,7 @@ export default {
         handleSelectTypeAction(bgcolor){
             this.bgcolor = bgcolor;
         }
+        
     }
     
 }
