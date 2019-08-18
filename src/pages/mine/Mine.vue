@@ -2,32 +2,45 @@
 <div>
     <div id="mine" class="page">
         <div class="header">
-            <div class='arrow'>
+            <div class='arrow' @click="goBackAction">
                 <span class="iconfont icon-jiantou2"></span>
             </div>
             <div class="information">
                 <div class="wrap-img">
                     <img src="" alt="">
                 </div>
-                <div class="wrap-name" >请登录/注册</div>
+                <div class="wrap-name" >请
+                    <router-link to="./login">登录/注册</router-link>
+                </div>
             </div>
         </div>
 
     <personal></personal>
     </div>
         
-    <router-view></router-view>
+    <transition enter-active-class="slideInRight" leave-active-class="slideOutRight">
+            <router-view></router-view>
+    </transition>
 
 </div>
 </template>
 
 <script>
 import personal from './children/personal'
+import login from './children/login'
 export default {
     components:{
         [personal.name]: personal,
+        [login.name]: login,
 
+    },
+    methods:{
+        goBackAction(){
+            this.$router.back();
+            console.log( this.$router)
+        }
     }
+    
     
 }
 </script>
