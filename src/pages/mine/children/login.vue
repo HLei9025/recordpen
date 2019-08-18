@@ -1,5 +1,8 @@
 <template>
-  <div>登陆界面</div>
+  <div id="mine" class="page">
+    
+
+  </div>
 </template>
 
 <script>

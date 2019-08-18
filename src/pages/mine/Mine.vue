@@ -10,7 +10,7 @@
                     <img src="" alt="">
                 </div>
                 <div class="wrap-name" >请
-                    <router-link to="./login">登录/注册</router-link>
+                    <router-link to="/home/mine/login">登录/注册</router-link>
                 </div>
             </div>
         </div>
