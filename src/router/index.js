@@ -38,7 +38,7 @@ const routes = [
             {
                 path: 'addnote',
                 props:(route)=>{
-                    console.log(route)
+                    // console.log(route)
                     return{
                         color:route.hash
                     }
