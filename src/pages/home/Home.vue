@@ -2,13 +2,17 @@
     <div>
         <div id="home" class="page">
             <header-nav></header-nav>
-            <footer-nav></footer-nav>
+            <div class="mine-btn">
+                <mine-btn-nav></mine-btn-nav>
+            </div>
+            <div class="add-btn">
+                <add-btn-nav :typeColor="color"></add-btn-nav>
+            </div>
             <app-scroll class="content">
-                <ul>
-                    <li v-for="num in 100" :key="num">{{num}}</li>
-                </ul>
+                <note-list :showType="selectStatus"></note-list>
+
             </app-scroll>
-            <tools></tools>
+            <tools :value="selectStatus" @typeStatus="handleTypeStatus"></tools>
         </div>
         <transition enter-active-class="slideInRight" leave-active-class="slideOutRight">
             <router-view></router-view>
@@ -18,24 +22,54 @@
 
 <script>
 import SearchAndCalendarNav from '../common/SearchAndCalendarNav'
-import AddAndMineNav from '../common/AddAndMineNav'
+import AddBtn from '../common/AddBtn'
+import MineBtn from '../common/MineBtn'
 import Tools from './children/Tools'
+import NoteList from './children/NoteList'
 export default {
     name: 'home',
     components: {
         [SearchAndCalendarNav.name]: SearchAndCalendarNav,
-        [AddAndMineNav.name]: AddAndMineNav,
-        [Tools.name]: Tools
+        [AddBtn.name]: AddBtn,
+        [MineBtn.name]: MineBtn,
+        [Tools.name]: Tools,
+        [NoteList.name]: NoteList
+    },
+    data(){
+        return{
+            selectStatus: '',
+            color: ''
+        }
+    },
+    methods: {
+        handleTypeStatus(value){
+            this.selectStatus = value.flag;
+            this.color = value.color;
+        }
     }
 }
 </script>
 
 <style lang="scss" scoped>
-.content{
-    width: 10rem;
-    position: absolute;
-    top: 50px;
-    left: 0;
-    bottom: 90px;
+#home{
+    .add-btn{
+        position: absolute;
+        right: 10px;
+        bottom: 45px;
+        z-index: 1;
+    }
+    .mine-btn{
+        position: absolute;
+        left: 10px;
+        bottom: 45px;
+        z-index: 1;
+    }
+    .content{
+        width: 10rem;
+        position: absolute;
+        top: 50px;
+        left: 0;
+        bottom: 40px;
+    }
 }
 </style>
