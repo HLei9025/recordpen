@@ -1,5 +1,16 @@
 <template>
     <div id="calendar" class="page">
+      <header-nav></header-nav>
+
+      <div class="mine-btn-nav-one">
+      <mine-btn-nav></mine-btn-nav>
+      </div>
+
+      <div class="add-btn-nav-two">
+      <add-btn-nav></add-btn-nav>
+      </div>
+
+      <div class="Calendar-one">
 <Calendar
       v-on:choseDay="clickDay"
       v-on:changeMonth="changeDate"
@@ -7,6 +18,7 @@
       :textTop="textTop"
        :sundayStart="true" 
     ></Calendar>
+    </div>
     <ul class="Calendar-list">
       <li class="Calendar-item" v-for="(item,index)
        in CalendarData" :key="index">
@@ -19,11 +31,17 @@
 </template>
 
 <script>
-import Calendar from 'vue-calendar-component';
-    
+import Calendar from 'vue-calendar-component'
+import MineBtn from '../common/MineBtn'
+import SearchAndCalendarNav from'../common/SearchAndCalendarNav'
+import  AddBtn from '../common/AddBtn'   
+
 export default {
 components: {
-    Calendar
+    Calendar,
+    [ MineBtn.name]:MineBtn,
+    [SearchAndCalendarNav.name]:SearchAndCalendarNav,
+    [AddBtn.name]: AddBtn,
   },
  data(){
      return{
@@ -51,10 +69,24 @@ components: {
 </script>
 
 <style lang="scss" scoped>
+#calendar{
+  width: 100%;
+  .mine-btn-nav-one{
+    position: absolute;
+    bottom: 30px;
+  }
+  .add-btn-nav-two{
+    position: absolute;
+    bottom: 30px;
+    right: 20px;
+  }
+  .Calendar-one{
+    margin-top:60px;
+  }
 .Calendar-list{
   margin-top: 20px;
   .Calendar-item{
-    border-top: 2px solid black;
+    border-top: 1px solid black;
     height: 30px;
     font-size:15px;
     line-height: 30px;
@@ -65,14 +97,13 @@ components: {
       display: inline-block;
       background: gray;
      margin: 8px 15px 0;
-    //  padding-top:10px;
       box-sizing: border-box;
     }
    .timer{
      margin-right: 20px;
-     font-size: 14px;
    }
   }
+}
 }
 </style>
 

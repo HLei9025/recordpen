@@ -26,7 +26,7 @@ const routes = [
                 component: ()=>import('../pages/search/Search'),
                 children: [
                     {
-                        path: '/search_input',
+                        path: 'search_input',
                         component: ()=>import('../pages/search/SearchInput')
                     }
                 ]

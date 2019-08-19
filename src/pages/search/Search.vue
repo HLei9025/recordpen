@@ -2,6 +2,7 @@
   <div id="search" class="page">
     <div class="try">
       <input type="text" class="try-text" placeholder="试试搜二月" />
+      <span class="iconfont icon-fangdajing" @click="goaction"></span>
       <h2 @click="backaction">取消</h2>
     </div>
 
@@ -16,7 +17,7 @@
     <ul class="Calendar-list">
       <li class="Calendar-item" v-for="(item,index)
        in CalendarData" :key="index">
-        <!-- <span class="circle">{{item}}</span> -->
+        <span class="circle"></span>
         <span class="timer">{{item.time}}</span>
         <span>{{item.con}}</span>
       </li>
@@ -54,6 +55,9 @@ export default {
     },
     backaction(){
       this.$router.go(-1);
+    },
+    goaction(){
+      this.$router. push('./search/SearchInput')
     }
   }
 }
@@ -73,8 +77,14 @@ export default {
       margin: 6px 5px 6px 8px;
       width: 80%;
       border-radius: 10px;
-      padding-left: 15px;
+      padding-left: 25px;
     }
+    .iconfont{
+       position: absolute;
+       left: 12px;
+       top: 6px;
+       margin-right: 5px;
+      }
     h2 {
       float: right;
       color: white;
@@ -83,15 +93,18 @@ export default {
     }
   }
   .Calendar-item {
-    border-top: 2px solid black;
+    border-top: 1px solid black;
     height: 30px;
     font-size: 15px;
     line-height: 30px;
     .circle {
       border-radius: 50%;
+      width: 10px;
+      height: 10px;
+      display: inline-block;
       background: gray;
-      width: 20px;
-      height: 20px;
+     margin: 8px 15px 0;
+      box-sizing: border-box;
     }
     .timer {
       margin-right: 20px;
