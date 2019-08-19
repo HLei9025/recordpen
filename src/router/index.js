@@ -13,7 +13,13 @@ const routes = [
         children: [
             {
                 path: 'mine',
-                component: ()=>import('../pages/mine/Mine')
+                component: ()=>import('../pages/mine/Mine'),
+                children: [
+                    {
+                        path: 'login',
+                        component: ()=>import('../pages/mine/children/login')
+                    }
+                ]
             },
             {
                 path: 'search',
@@ -31,6 +37,12 @@ const routes = [
             },
             {
                 path: 'addnote',
+                props:(route)=>{
+                    // console.log(route)
+                    return{
+                        color:route.hash
+                    }
+                },
                 component: ()=>import('../pages/addNote/AddNote'),
                 children: [
                     {

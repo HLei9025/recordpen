@@ -2,7 +2,11 @@
     <div id="tools">
         <div class="tool-wrap">
             <ul class="tool-content">
-                <li class="tool-item" v-for="item in toolsList" :key="item.flag">
+                <li class="tool-item" 
+                    v-for="item in toolsList" 
+                    :key="item.flag" 
+                    @click="handleChangeStatus(item)" 
+                    :style="{background:item.flag === value ? item.color : '#aaa'}">
                     {{item.name}}
                 </li>
             </ul>
@@ -15,14 +19,22 @@
 <script>
 export default {
     name: 'tools',
+    props: {
+        value: String
+    },
     data(){
         return {
             toolsList: [
-                {flag: 'diary',name: '日记'},
-                {flag: 'note',name: '笔记'},
-                {flag: 'todo',name: '待办'},
-                {flag: 'schedule',name: '日程'}
+                {flag: 'diary',name: '日记', color: '#F3C95A'},
+                {flag: 'note',name: '笔记', color: '#4A9BD4'},
+                {flag: 'todo',name: '待办', color: '#EA6D6D'},
+                {flag: 'schedule',name: '日程', color: '#EE906F'}
             ]
+        }
+    },
+    methods: {
+        handleChangeStatus(item){
+            this.$emit('typeStatus',item)
         }
     }
     

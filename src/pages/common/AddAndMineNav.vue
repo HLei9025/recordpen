@@ -1,8 +1,12 @@
 <template>
     <div id="add-and-mine">
         <div class="nav-wrap">
-            <router-link class="mine nav-left-btn" to='/home/mine'>3</router-link>
-            <router-link class="add nav-right-btn" to='/home/addnote'>4</router-link>
+            <router-link class="mine nav-left-btn" to='/home/mine'>
+                <span class="iconfont icon-caidan"></span>
+            </router-link>
+            <router-link class="add nav-right-btn" to='/home/addnote'>
+                <span class="iconfont icon-jiahao"></span>
+            </router-link>
         </div>
     </div>
 
@@ -17,9 +21,10 @@ export default {
 
 <style lang="scss" scoped>
 .nav-wrap{
+    z-index: 1;
     width: 100%;
     height: 50px;
-    background: #eaeaea;
+    // background: #eaeaea;
     padding: 0 .266667rem;
     position: absolute;
     left: 0;
