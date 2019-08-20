@@ -1,5 +1,5 @@
 <template>
-    <div id="search-and-calendar">
+        <div id="search-and-calendar">
         <div class="nav-wrap">
             <router-link class="search nav-left-btn" to="/home/search">
                 <span class="iconfont icon-fangdajing"></span>
@@ -10,7 +10,6 @@
             </router-link>
         </div>
     </div>
-
 </template>
 
 <script>
