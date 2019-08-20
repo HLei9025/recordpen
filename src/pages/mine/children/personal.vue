@@ -72,7 +72,7 @@ export default {
     width: 100%;
     .personal{
         background-color: #EAEAEA;
-        padding: 0 15px 0 30px;
+        padding: 0 20px 0 30px;
         height: 50px;
         line-height: 50px;
         box-sizing: border-box;

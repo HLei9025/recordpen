@@ -11,7 +11,11 @@
 
 <script>
 export default {
-    
+    methods: {
+      backaction(){
+        this.$router.push("/home");
+      }
+    }
 }
 </script>
 
