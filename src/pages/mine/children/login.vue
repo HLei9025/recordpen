@@ -75,7 +75,7 @@ export default {
     border-bottom: 1px solid #ffffff;
     margin-top: 80px;
       .rgt{
-        margin-right: 20px;
+        margin-right: 10px;
         float: left;
         &::before{
           font-size: 30px;
@@ -85,7 +85,8 @@ export default {
         outline: none;
         border: none;
         background: transparent;
-        font-size: 18px;
+        font-size: 14px;
+        padding: 5px 0;
         color: #333333;
       }
   }
@@ -97,8 +98,9 @@ export default {
     border-bottom: 1px solid #ffffff;
     margin-top: 30px;
     display: flex;
+    box-sizing: border-box;
     .rgt{
-      margin-right: 20px;
+      margin-right: 10px;
         float: left;
         &::before{
           font-size: 30px;
@@ -108,7 +110,7 @@ export default {
         outline: none;
         border: none;
         background: transparent;
-        font-size: 16px;
+        font-size: 14px;
         color: #333333;
         flex: 1;
       }
