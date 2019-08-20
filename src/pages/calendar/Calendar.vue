@@ -1,6 +1,6 @@
 <template>
     <div id="calendar" class="page">
-      <header-nav></header-nav>
+      <header-nav :actionType="actionType"></header-nav>
 
       <div class="mine-btn-nav-one">
       <mine-btn-nav></mine-btn-nav>
@@ -50,7 +50,8 @@ components: {
            {id:1, time:2019, con: '123',},
            {id:2, time:2018, con: '1234',},
            {id:3, time:2017, con: '12345',}
-         ]
+         ],
+         actionType: false
      }
  },
  

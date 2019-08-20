@@ -1,6 +1,6 @@
 <template>
     <div id="tools">
-        <div class="tool-wrap">
+        <div class="tool-wrap" :style="{background: isWhiteColor ? '#fff' : '#eaeaea'}">
             <ul class="tool-content">
                 <li class="tool-item" 
                     v-for="item in toolsList" 
@@ -20,7 +20,8 @@
 export default {
     name: 'tools',
     props: {
-        value: String
+        value: String,
+        isWhiteColor: Boolean
     },
     data(){
         return {

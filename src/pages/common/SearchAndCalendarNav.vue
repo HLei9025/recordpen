@@ -5,7 +5,7 @@
                 <span class="iconfont icon-fangdajing"></span>
             </router-link>
             <div class="title">{{showDate}}</div>
-            <router-link class="calendar nav-right-btn" to="/home/calendar">
+            <router-link class="calendar nav-right-btn" :to="actionType ? '/home/calendar' : '/home'">
                 <span class="iconfont icon-richeng1"></span>
             </router-link>
         </div>
@@ -16,6 +16,9 @@
 <script>
 export default {
     name: 'header-nav',
+    props: {
+        actionType: Boolean
+    },
     data(){
         return{
             showDate: ''

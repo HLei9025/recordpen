@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div id="home" class="page">
-            <header-nav></header-nav>
+        <div id="home" class="page" :style="{background: isWhiteColor ? '#fff' : '#eaeaea'}">
+            <header-nav :actionType="actionType"></header-nav>
             <div class="mine-btn">
                 <mine-btn-nav></mine-btn-nav>
             </div>
@@ -12,7 +12,7 @@
                 <note-list :showType="selectStatus"></note-list>
 
             </app-scroll>
-            <tools :value="selectStatus" @typeStatus="handleTypeStatus"></tools>
+            <tools :value="selectStatus" @typeStatus="handleTypeStatus" :isWhiteColor="isWhiteColor"></tools>
         </div>
         <transition enter-active-class="slideInRight" leave-active-class="slideOutRight">
             <router-view></router-view>
@@ -38,13 +38,16 @@ export default {
     data(){
         return{
             selectStatus: '',
-            color: ''
+            color: '',
+            isWhiteColor: false,
+            actionType: true
         }
     },
     methods: {
         handleTypeStatus(value){
             this.selectStatus = value.flag;
             this.color = value.color;
+            this.isWhiteColor = true;
         }
     }
 }
