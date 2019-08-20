@@ -74,7 +74,7 @@ export default {
             .wrap-name{
                 margin-left: 30px;
                 line-height: 63px;
-                font-size: 20px;
+                font-size: 16px;
                 color: #fff;
                 float: left;
             }
