@@ -4,7 +4,7 @@ import router from './router'
 import store from './store'
 import utils from './utils'
 
-Vue.use(utils)
+Vue.use(utils);
 
 new Vue({
     el: '#app',
