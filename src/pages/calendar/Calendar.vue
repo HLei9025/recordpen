@@ -7,7 +7,7 @@
       </div>
 
       <div class="add-btn-nav-two">
-      <add-btn-nav></add-btn-nav>
+      <add-btn-noparams-nav></add-btn-noparams-nav>
       </div>
 
       <div class="Calendar-one">
@@ -34,14 +34,14 @@
 import Calendar from 'vue-calendar-component'
 import MineBtn from '../common/MineBtn'
 import SearchAndCalendarNav from'../common/SearchAndCalendarNav'
-import  AddBtn from '../common/AddBtn'   
+import AddBtnNoParams  from '../common/AddBtnNoParams'   
 
 export default {
 components: {
     Calendar,
-    [ MineBtn.name]:MineBtn,
+    [MineBtn.name]:MineBtn,
     [SearchAndCalendarNav.name]:SearchAndCalendarNav,
-    [AddBtn.name]: AddBtn,
+    [AddBtnNoParams.name]:  AddBtnNoParams,
   },
  data(){
      return{

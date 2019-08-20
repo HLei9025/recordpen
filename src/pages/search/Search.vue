@@ -1,8 +1,10 @@
 <template>
-  <div id="search" class="page">
+  <div>
+    <div id="search" class="page">
     <div class="try">
-      <input type="text" class="try-text" placeholder="试试搜二月" />
-      <span class="iconfont icon-fangdajing" @click="goaction"></span>
+      <span class="try-text"  @click="goaction"></span>
+      <span class="iconfont icon-fangdajing"></span>
+      <h3>试试搜二月</h3>
       <h2 @click="backaction">取消</h2>
     </div>
 
@@ -22,6 +24,11 @@
         <span>{{item.con}}</span>
       </li>
     </ul>
+  </div>
+
+  <transition enter-active-class="slideInRight" leave-active-class="slideOutRight">
+    <router-view></router-view>
+  </transition>
   </div>
 </template>
 
@@ -54,10 +61,10 @@ export default {
       console.log(data); //跳到了本月
     },
     backaction(){
-      this.$router.go(-1);
+      this.$router.push("/home");
     },
     goaction(){
-      this.$router. push('./search/SearchInput')
+      this.$router.push('/home/search/search_input')
     }
   }
 }
@@ -71,25 +78,36 @@ export default {
     background: gray;
     overflow: hidden;
     width: 100%;
+    height: 48px;
     .try-text {
       float: left;
       background: #aaa8a8;
       margin: 6px 5px 6px 8px;
-      width: 80%;
+      width: 75%;
+      height: 33px;
+      line-height: 33px;
       border-radius: 10px;
       padding-left: 25px;
+      border: none;
     }
     .iconfont{
        position: absolute;
        left: 12px;
-       top: 6px;
+       top: 15px;
        margin-right: 5px;
+      }
+      h3{
+        position: absolute;
+        left:12px;
+        top:15px;
+        padding-left: 20px;
       }
     h2 {
       float: right;
       color: white;
       font-size: 14px;
-      margin: 7px 4px 7px 0;
+      line-height: 48px;
+      margin: 0 10px;
     }
   }
   .Calendar-item {
