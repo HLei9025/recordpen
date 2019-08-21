@@ -14,6 +14,7 @@ export default {
     name: 'add-btn-nav',
     props: {
         typeColor: String,
+        selectStatus: String
     },
     methods: {
         handleAddNoteAction(){

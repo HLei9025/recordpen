@@ -41,6 +41,7 @@ const routes = [
                     // console.log(route)
                     return{
                         color:route.hash
+                        
                     }
                 },
                 component: ()=>import('../pages/addNote/AddNote'),
