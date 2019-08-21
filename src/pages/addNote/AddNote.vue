@@ -6,16 +6,16 @@
                 <li class="type-item" 
                     v-for="item in notetype" 
                     :key="item.id" 
-                    @click="handleSelectTypeAction(item.bgcolor)"
+                    @click="handleSelectTypeAction(item)"
                     :style="{background:bgcolor?(bgcolor===item.bgcolor?item.bgcolor:'#aaa'):'#aaa'}">{{item.name}}</li>
             </ul>
             <div class="things-and-time" @click="handleToWriteNoteAction">
                 <span class="pic iconfont icon-44"></span>
-                <span class="holder">什么事？</span>
+                <span class="holder">{{noteTitleInfo ? noteTitleInfo : '什么事？'}}</span>
             </div>
-            <div class="things-and-time" @click="handleToWriteNoteAction">
+            <div class="things-and-time">
                 <span class="pic iconfont icon-richeng"></span>
-                <span class="holder">何年何月发生的？</span>
+                <a-date-picker placeholder="何年何月发生？" size=large @change="onChange" />
             </div>
             <div class="tip">
                 <span class="txt">特别提醒</span>
@@ -24,22 +24,34 @@
                     <i class="spot" :class="remind?'move':''"></i>
                 </span>
             </div>
-            <div class="save">保存</div>
+            <div class="save" @click="handleSaveNoteAction">保存</div>
         </div>
         <transition enter-active-class="slideInRight" leave-active-class="slideOutRight">
             <router-view></router-view>
         </transition>
+        <div class="tip-show" v-if="tipShow">请选择日记类型</div>
     </div>
 </template>
 
 <script>
 import AddHeader from '../common/AddHeader'
+import DatePicker from 'ant-design-vue/lib/date-picker'
+import 'ant-design-vue/dist/antd.css'
+import {mapState} from 'vuex'
+import { setTimeout } from 'timers';
 export default {
     components: {
-        [AddHeader.name]:AddHeader
+        [AddHeader.name]:AddHeader,
+        [DatePicker.name]: DatePicker
     },
     props: {
         color: String
+    },
+    computed: {
+        ...mapState({
+            noteTitleInfo: state=>state.savenote.noteTitleInfo,
+            noteContentInfo: state=>state.savenote.noteContentInfo
+        })
     },
     data(){
         return {
@@ -54,11 +66,23 @@ export default {
             ],
             isExist: true,
             remind: false,
-            bgcolor: ''
+            bgcolor: '',
+            noteTypeStatus: '',
+            writeNoteDate: '',
+            tipShow: false
         }
     },
     created(){
         this.bgcolor = this.color;
+    },
+    watch: {
+        tipShow(newState){
+            if(newState){
+                setTimeout(()=>{
+                    this.tipShow = false;
+                },1500)
+            }
+        }
     },
     methods: {
         handleShowAction(value){
@@ -70,12 +94,27 @@ export default {
         handleToWriteNoteAction(){
             this.$router.push('/home/addnote/writenote');
         },
-        handleSelectTypeAction(bgcolor){
-            this.bgcolor = bgcolor;
-        }
-        
+        handleSelectTypeAction(item){
+            this.bgcolor = item.bgcolor;
+            this.noteTypeStatus = item.type
+        },
+        onChange(date, dateString) {
+            console.log(date, dateString);
+            this.writeNoteDate = dateString;
+        },
+        handleSaveNoteAction(){
+            let noteMessage = {};
+            noteMessage.type = this.noteTypeStatus;
+            noteMessage.date = this.writeNoteDate;
+            noteMessage.title = this.noteTitleInfo;
+            noteMessage.content = this.noteContentInfo;
+            if(noteMessage.type){
+                this.$store.commit('savenote/saveNoteMessageAction', noteMessage)
+            }else{
+                this.tipShow = true;
+            }
+        } 
     }
-    
 }
 </script>
 
@@ -139,7 +178,10 @@ export default {
             flex: 1;
             font-size: 16px;
             color: #fff;
-
+            padding: 0 11px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
     }
     .tip{
@@ -209,4 +251,44 @@ export default {
         box-shadow: 0 2px 3px 1px #aaa;
     }
 }
+.tip-show{
+    width: 120px;
+    height: 120px;
+    background: rgba(170, 170, 170, 0.3);
+    border-radius: 8px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    text-align: center;
+    line-height: 120px;
+    font-size: 14px;
+    color: #333;
+}
+</style>
+
+<style lang="scss">
+.ant-input {
+    background-color: #F2CD90;
+    color: #fff;
+    border: 0;
+    &::-webkit-input-placeholder{
+        color:#fff;
+    }
+    &::-moz-placeholder{ 
+        color:#fff;
+    }
+    &:-moz-placeholder{
+        color:#fff;
+    }
+    &:-ms-input-placeholder{
+        color:#fff;
+    }
+}
+.anticon svg {
+    display: none;
+}
+
 </style>

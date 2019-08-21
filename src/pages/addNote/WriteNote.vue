@@ -3,10 +3,10 @@
         <add-header :title="title" :goBack="goBack"/>
         <div class="write-wrap">
             <div class="write-title">
-                <input class="input" type="text" placeholder="标题">
+                <input class="input" type="text" placeholder="标题" v-model="noteTitle"/>
             </div>
             <div class="write-content">
-                <textarea class="txt-area" placeholder="内容"></textarea>
+                <textarea class="txt-area" placeholder="内容" v-model="noteContent"></textarea>
                 <div class="tags">
                     <span class="iconfont icon-shiwu-xiguan"></span>
                     <span class="iconfont icon-biaoqian"></span>
@@ -30,10 +30,15 @@ export default {
     data(){
         return {
             title: '新增随记',
-            goBack: true
+            goBack: true,
+            noteTitle: '',
+            noteContent: ''
         }
+    },
+    destroyed(){
+        this.$store.commit('savenote/saveNoteTitle', this.noteTitle);
+        this.$store.commit('savenote/saveNoteContent', this.noteContent)
     }
-    
 }
 </script>
 
