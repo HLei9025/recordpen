@@ -6,7 +6,7 @@
                 <mine-btn-nav></mine-btn-nav>
             </div>
             <div class="add-btn">
-                <add-btn-nav :typeColor="color"></add-btn-nav>
+                <add-btn-nav :typeColor="color" :selectStatus="selectStatus"></add-btn-nav>
             </div>
             <app-scroll class="content">
                 <note-list :showType="selectStatus"></note-list>

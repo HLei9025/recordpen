@@ -11,7 +11,7 @@
             </ul>
             <div class="things-and-time" @click="handleToWriteNoteAction">
                 <span class="pic iconfont icon-44"></span>
-                <span class="holder">{{noteTitleInfo ? noteTitleInfo : '什么事？'}}</span>
+                <span class="holder">{{(noteTitleInfo && syncTitle) ? noteTitleInfo : '什么事？'}}</span>
             </div>
             <div class="things-and-time">
                 <span class="pic iconfont icon-richeng"></span>
@@ -29,7 +29,7 @@
         <transition enter-active-class="slideInRight" leave-active-class="slideOutRight">
             <router-view></router-view>
         </transition>
-        <div class="tip-show" v-if="tipShow">请选择日记类型</div>
+        <div class="tip-show" v-if="tipShow">{{((showTxt===1) && '请选择日记类型') || ((showTxt===2) && '请添加日记内容') || ((showTxt===3) && '请选择时间')}}</div>
     </div>
 </template>
 
@@ -38,7 +38,6 @@ import AddHeader from '../common/AddHeader'
 import DatePicker from 'ant-design-vue/lib/date-picker'
 import 'ant-design-vue/dist/antd.css'
 import {mapState} from 'vuex'
-import { setTimeout } from 'timers';
 export default {
     components: {
         [AddHeader.name]:AddHeader,
@@ -51,7 +50,18 @@ export default {
         ...mapState({
             noteTitleInfo: state=>state.savenote.noteTitleInfo,
             noteContentInfo: state=>state.savenote.noteContentInfo
-        })
+        }),
+        showTypeBgColor(){
+            if(this.bgcolor === '#F3C95A'){
+                return this.noteTypeStatus = 'dary';
+            }else if(this.bgcolor === '#4A9BD4'){
+                return this.noteTypeStatus = 'note';
+            }else if(this.bgcolor === '#EA6D6D'){
+                return this.noteTypeStatus = 'todo';
+            }else if(this.bgcolor === '#EE906F'){
+                return this.noteTypeStatus = 'schedule';
+            }
+        }
     },
     data(){
         return {
@@ -69,7 +79,9 @@ export default {
             bgcolor: '',
             noteTypeStatus: '',
             writeNoteDate: '',
-            tipShow: false
+            tipShow: false,
+            showTxt: 0,
+            syncTitle: true
         }
     },
     created(){
@@ -104,16 +116,31 @@ export default {
         },
         handleSaveNoteAction(){
             let noteMessage = {};
-            noteMessage.type = this.noteTypeStatus;
+            noteMessage.type = this.showTypeBgColor;
             noteMessage.date = this.writeNoteDate;
             noteMessage.title = this.noteTitleInfo;
             noteMessage.content = this.noteContentInfo;
-            if(noteMessage.type){
-                this.$store.commit('savenote/saveNoteMessageAction', noteMessage)
-            }else{
+            if(noteMessage.type && noteMessage.date && noteMessage.title){
+                this.$store.commit('savenote/saveNoteMessageAction', noteMessage);
+                this.$router.push('/home');
+                this.syncTitle = false;
+                // console.log('执行了')
+            }else if(noteMessage.type === ''){
                 this.tipShow = true;
+                this.showTxt = 1;
+            }else{
+                if(noteMessage.title === ''){
+                    this.tipShow = true;
+                    this.showTxt = 2;
+                }else{
+                    if(noteMessage.date === ''){
+                        this.tipShow = true;
+                        this.showTxt = 3;
+                    }
+                }
             }
-        } 
+
+        }
     }
 }
 </script>
@@ -287,8 +314,19 @@ export default {
         color:#fff;
     }
 }
-.anticon svg {
+.anticon{
     display: none;
 }
 
+.ant-calendar-picker-container{
+    left: 0;
+    padding: 0 15px;
+    width: 100%;
+    top: 161px;
+}
+
+.ant-calendar{
+    top: 45px;
+    width: 100%;
+}
 </style>
